@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+// -------------------- MODULO DE RECEPCION -----------------------
+
+//PACIENTE
+model pacientes {
+  id Int @id @default(autoincrement())
+  nombre String 
+  apPaterno String
+  apMaterno String
+  telefono String
+  email String? @default("-")
+  fechaNacimiento DateTime @db.Date
+  cita citas[]
+  expediente expedientes []
+}
+
+//ESPECIALIDADES DE MEDICOS
+model especialidades {
+  id Int @id @default(autoincrement())
+  especialidad String
+  medico medicos[]
+}
+
+//MEDICO
+model medicos {
+  id Int @id @default(autoincrement())
+  medico String
+  especialidadId Int
+  especialidad especialidades @relation(fields: [especialidadId], references: [id], onDelete: Cascade)
+  citaMedica citas[]
+
+}
+
+//EXPEDIENTE
+model expedientes {
+  id Int @id @default(autoincrement())
+  pacienteId Int @unique
+  pacienteExpediente pacientes @relation(fields: [pacienteId], references: [id], onDelete: Cascade)
+}
+
+//CITAS
+model citas {
+  id Int @id @default(autoincrement())
+  pacienteId Int
+  pacienteCita pacientes @relation(fields: [pacienteId], references: [id], onDelete: Cascade)
+  fecha DateTime @db.Date
+  estado String @default("pendiente")
+  medicoId Int
+  medicoCita medicos @relation(fields: [medicoId], references: [id], onDelete: Cascade)
+}
+
+// -------------- MODULO DE GERENCIA
+enum Role {
+  RECEPCIONISTA
+  MEDICO
+  GERENCIA
+}
+
+
+model user {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  role     Role     @default(RECEPCIONISTA)
+  creadoEn DateTime @default(now())
+
+}
+
+// RENTABILIDAD (LISTA DE TODAS LAS CITAS AGENDADAS)

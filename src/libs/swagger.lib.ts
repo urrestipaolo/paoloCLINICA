@@ -8,12 +8,20 @@ const doc = {
     },
     host: 'localhost:3000',
     schemes: ['http'],
+    components: {
+        securitySchemes:{
+            bearerAuth: {
+                type: 'http',
+                scheme: 'bearer'
+            }
+        }
+    }
 };
 
 const outputFile = 'swagger-output.json';
 
 const endpointsFiles = ['./src/index.ts'];
 
-swaggerAutogen()(outputFile, endpointsFiles, doc).then(async () => {
+swaggerAutogen({openapi : '3.0.0'})(outputFile, endpointsFiles, doc).then(async () => {
     await import('../index.js');
 });
