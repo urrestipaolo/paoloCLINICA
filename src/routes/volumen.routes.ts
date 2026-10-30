@@ -6,7 +6,7 @@ import { authorize } from "../middlewares/authorize.middleware";
 
 const router = Router();
 
-router.get("/", verifyToken, authorize("GERENCIA"), getVolumen
+router.get("/", /* verifyToken, authorize("GERENCIA"), */ getVolumen
             /* #swagger.tags = ['VOLUMEN TOTAL']
     #swagger.summary = 'VER TODAS LAS CITAS QUE SE COMPLETARON Y CANCELARON'
     */

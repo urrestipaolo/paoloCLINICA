@@ -9,22 +9,22 @@ import { authorize } from "../middlewares/authorize.middleware";
 
 const router = Router();
 
-router.get("/", verifyToken, getEspecialidad
+router.get("/", /* verifyToken,*/ getEspecialidad 
         /* #swagger.tags = ['ESPECIALIDAD MEDICA']
     #swagger.summary = 'VER LAS ESPECIALIDADES MEDICAS'
     */
 );
-router.post("/", verifyToken, authorize("GERENCIA"), postEspecialidad
+router.post("/", /* verifyToken, authorize("GERENCIA"), */ postEspecialidad
     /* #swagger.tags = ['ESPECIALIDAD MEDICA']
     #swagger.summary = 'CREAR UNA ESPECIALIDAD MEDICA'
     */
 );
-router.put("/:id", verifyToken, putEspecialidad
+router.put("/:id", /* verifyToken, */ putEspecialidad
         /* #swagger.tags = ['ESPECIALIDAD MEDICA']
     #swagger.summary = 'ACTUALIZAR UNA ESPECIALIDAD MEDICA'
     */
 );
-router.delete("/:id", verifyToken, authorize("GERENCIA"), deleteEspecialidad
+router.delete("/:id", /* verifyToken, authorize("GERENCIA"), */ deleteEspecialidad
     /* #swagger.tags = ['ESPECIALIDAD MEDICA']
     #swagger.summary = 'ELIMINAR UNA ESPECIALIDAD MEDICA'
     */

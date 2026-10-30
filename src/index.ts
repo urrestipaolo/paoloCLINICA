@@ -53,7 +53,7 @@ app.use("/volumen", volumenRouter
 app.use("/usuarios", userRouter);
 
 
-app.use("/api/docs", swaggerRouter) 
+app.use("/api", swaggerRouter) 
 
 
 app.get("/", (req: Request, res: Response) => {

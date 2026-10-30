@@ -10,12 +10,12 @@ router.get("/", getUsers
     #swagger.summary = 'VER LA LISTA DE LOS USUARIOS REGISTRADOS EN EL SISTEMA'
     */
 );
-router.put("/:id", verifyToken, authorize("GERENCIA"), putUser
+router.put("/:id", /* verifyToken, authorize("GERENCIA"), */ putUser
             /* #swagger.tags = ['USUARIOS DEL SISTEMA']
     #swagger.summary = 'ACTUALIZAR UN USUARIO DEL SISTEMAN'
     */
 );
-router.delete("/:id", verifyToken, authorize("GERENCIA"), deleteUser
+router.delete("/:id", /* verifyToken, authorize("GERENCIA"), */ deleteUser
             /* #swagger.tags = ['USUARIOS DEL SISTEMA']
     #swagger.summary = 'ELIMINAR UN USUARIO DEL SISTEMA'
     */

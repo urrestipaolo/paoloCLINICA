@@ -5,7 +5,7 @@ import { pacienteModel } from "../models/paciente.model";
 export const getPaciente = async ( req: Request, res: Response): Promise<void> => {
     try {
         const paciente = await pacienteModel.findAll()
-        res.json({ totalPacientes: paciente.length, data: paciente});
+        res.json({ data: paciente ,totalPacientes: paciente.length });
     } catch (error) {
         console.error("ERROR AL CONSULTAR LOS DATOS SQL: ");
         res.status(500).json({
